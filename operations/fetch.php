@@ -2,7 +2,7 @@
     $pdo = include 'db_connect.php';
 
     try {
-        $sno = 0;
+        $sno = 1;
         $sql = 'SELECT * FROM `crud_items`';
         
         $stmt = $pdo->query($sql);
@@ -14,10 +14,14 @@
                     <?php echo $sno; $sno += 1; ?>
                 </td>
                 <td>
-                    <?php echo $item['title']; ?>
+                    <strong>
+                        <?php echo $item['title']; ?>
+                    </strong>
                 </td>
                 <td>
-                    <?php echo $item['description']; ?>
+                    <strong>
+                        <?php echo $item['description']; ?>
+                    </strong>
                 </td>
                 <td>
                     <?php echo $item['created_at']; ?>

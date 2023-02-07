@@ -1,7 +1,6 @@
 <?php
     session_start();
     $pdo = include "../db_connect.php";
-
     if(isset($_GET['id'])) {
         $id = $_GET["id"];
         $sql = "DELETE FROM `crud_items` WHERE `id`=:id";
@@ -21,4 +20,10 @@
             exit(1);
         }
     }
+    try {
+
+    }catch(PDOException $e) {
+        echo $e->getMessage();
+    }
+    
 ?>

@@ -11,7 +11,7 @@
 
 <body>
     <div class="container my-5">
-        <h3 class="text-primary">Create a new task</h3>
+        <h2 class="text-primary">Create a new task</h2>
         <a href="../index.php" class="text-decoration-none">Back</a>
     </div>
     <div class="container mt-4">

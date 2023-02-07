@@ -28,12 +28,12 @@ session_start();
     </div>
 
     <div class="container border border-1 py-3 mt-3 d-flex justify-content-between flex-wrap">
-        <h1 class="text-info">PHP PDO CRUD</h1>
-        <button type="button" class="create_crude btn btn-outline-info"><a href="./operations/create.php" class="text-decoration-none">New Task</a></button>
+        <h2 class="text-info">PHP PDO CRUD</h2>
+        <button type="button" class="create_crude btn btn-outline-info"><a href="./operations/create.php" class="text-decoration-none text-dark">New Task</a></button>
     </div>
 
     <div class="container">
-        <h2 class="my-4 text-secondary">List of all task</h2>
+        <h2 class="my-4 text-secondary">List of all tasks</h2>
         <table class="table table-bordered table-stripped">
             <thead class="bg-info text-light">
                 <tr>

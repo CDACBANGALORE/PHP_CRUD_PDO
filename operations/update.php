@@ -1,6 +1,6 @@
-<?php 
-    session_start();
-    $pdo = include_once "../db_connect.php";
+<?php
+session_start();
+$pdo = include_once "../db_connect.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,12 +15,13 @@
 
 <body>
     <div class="container my-5">
-        <h3 class="text-primary">Update the task</h3>
+        <h2 class="text-primary">Update the task</h2>
         <a href="../index.php" class="text-decoration-none">Back</a>
     </div>
 
     <?php
-        if(isset($_POST['update'])) {
+    try {
+        if (isset($_POST['update'])) {
             $updateId = $_POST['id'];
             $newTitle = $_POST['title'];
             $newDescription = $_POST['description'];
@@ -34,7 +35,7 @@
             ];
             $result = $stmt->execute($data);
 
-            if($result) {
+            if ($result) {
                 $_SESSION['message'] = 'Task updated successfully';
                 header('Location: ../index.php');
                 exit(0);
@@ -44,7 +45,12 @@
                 exit(1);
             }
         }
-        if(isset($_GET['id'])) {
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
+    try {
+        if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
             $sql = 'SELECT * FROM `crud_items` WHERE `id`=:id';
@@ -55,16 +61,20 @@
             $stmt->execute($data);
             $result = $stmt->fetch(PDO::FETCH_OBJ);
         }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
     ?>
     <div class="container mt-4">
         <form action="#" method="post">
             <input type="hidden" value="<?php echo $id; ?>" name="id">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Title" name="title" value="<?php echo $result->title; ?>" required >
+                <input type="text" class="form-control" id="floatingInput" placeholder="Title" name="title" value="<?php echo $result->title; ?>" required>
                 <label for="floatingInput">Title</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingPassword" placeholder="Description" value="<?php echo $result->description; ?>" name="description" required >
+                <input type="text" class="form-control" id="floatingPassword" placeholder="Description" value="<?php echo $result->description; ?>" name="description" required>
                 <label for="floatingPassword">Description</label>
             </div>
             <button type="input" name="update" class="create_crude btn btn-outline-primary my-3">Update</button>
